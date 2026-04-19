@@ -15,7 +15,7 @@ const slides = [
   { src: p5, title: "Family Love Forever 🫶", subtitle: "The heart of every celebration" },
   { src: p8, title: "Look How Far You've Come 🌷", subtitle: "From little sparkle to shining star" },
   { src: p6, title: "Daddy's Princess 👑", subtitle: "Forever his pride & joy" },
-  { src: p7, title: "Sister Goals 💞", subtitle: "Bonded by love, woven by stars" },
+  { src: p7, title: "Aunty's Little Star 💞", subtitle: "Bonded by love, woven by stars" },
   { src: p4, title: "You Are So Special 🌸", subtitle: "Wild, free & wonderfully you" },
   { src: p3, title: "Made With Love 💕", subtitle: "Every memory a treasure" },
 ];
@@ -43,19 +43,27 @@ const Slideshow = () => {
 
       <div className="mx-auto mt-10 max-w-5xl">
         <div className="relative overflow-hidden rounded-[2rem] glass shadow-dreamy p-3 sm:p-4">
-          <div className="relative aspect-[4/5] sm:aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-black/5">
+          <div className="relative aspect-[4/5] sm:aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[hsl(var(--pink-soft))] to-[hsl(var(--lavender))]">
             {slides.map((s, i) => (
-              <img
+              <div
                 key={i}
-                src={s.src}
-                alt={s.title}
-                loading={i === 0 ? "eager" : "lazy"}
-                className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-out ${
+                className={`absolute inset-0 transition-all duration-1000 ease-out ${
                   i === index ? "opacity-100 scale-100" : "opacity-0 scale-105"
                 }`}
-              />
+              >
+                <div
+                  className="absolute inset-0 scale-110 blur-2xl opacity-60"
+                  style={{ backgroundImage: `url(${s.src})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                />
+                <img
+                  src={s.src}
+                  alt={s.title}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  className="relative h-full w-full object-contain"
+                />
+              </div>
             ))}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
 
             <div key={animKey} className="absolute inset-x-0 bottom-0 p-5 sm:p-10 text-center text-white">
               <h3 className="animate-slide-in-up font-[Dancing_Script] text-3xl sm:text-5xl drop-shadow-lg">
