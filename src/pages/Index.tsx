@@ -1,16 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect, useState } from "react";
+import SparkleBackground from "@/components/SparkleBackground";
+import Loader from "@/components/Loader";
+import WelcomeHero from "@/components/WelcomeHero";
+import Slideshow from "@/components/Slideshow";
+import SurpriseButton from "@/components/SurpriseButton";
+import FinalMessage from "@/components/FinalMessage";
+import MusicToggle from "@/components/MusicToggle";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const NAME = "Beta";
+
+const Index = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 1800);
+    document.documentElement.style.scrollBehavior = "smooth";
+    return () => clearTimeout(t);
+  }, []);
+
+  const scrollToSlides = () => {
+    document.getElementById("slideshow")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  if (loading) return <Loader />;
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <main className="relative min-h-screen overflow-hidden">
+      <SparkleBackground />
+      <WelcomeHero name={NAME} onScroll={scrollToSlides} />
+      <Slideshow />
+      <SurpriseButton />
+      <FinalMessage />
+      <MusicToggle />
+    </main>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
